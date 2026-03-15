@@ -1,15 +1,4 @@
 <!DOCTYPE html>
-<html lang="en">
-
-  <head>
-    <meta charset="UTF-8">
-    <title>Untitled</title>
-    <link rel="stylesheet" href="./style.css">
-
-  </head>
-    
-  <body>
-  <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -21,162 +10,179 @@
             --primary: #00f2ff;
             --bg: #000000;
             --card: #0a0a0a;
-            --accent: linear-gradient(135deg, #00f2ff 0%, #0062ff 100%);
+            --whatsapp: #25d366;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
-        body { background: var(--bg); color: white; overflow-x: hidden; }
+        body { background: var(--bg); color: white; overflow-x: hidden; scroll-behavior: smooth; }
 
         /* --- PRELOADER --- */
         #loader {
             position: fixed; inset: 0; z-index: 9999; background: #000;
             display: flex; flex-direction: column; justify-content: center; align-items: center;
-            transition: opacity 1s ease, visibility 1s;
+            transition: opacity 0.8s ease;
         }
-        .loader-bar { width: 200px; height: 2px; background: #111; position: relative; margin-top: 20px; }
+        .loader-logo { font-size: 2rem; font-weight: 900; letter-spacing: -2px; margin-bottom: 10px; }
+        .loader-logo span { color: var(--primary); }
+        .loader-line { width: 150px; height: 2px; background: #111; position: relative; overflow: hidden; }
         .loader-fill { position: absolute; width: 0%; height: 100%; background: var(--primary); animation: load 2s forwards; }
         @keyframes load { to { width: 100%; } }
 
         /* --- HEADER --- */
         header {
-            position: fixed; top: 0; width: 100%; padding: 20px 5%;
+            position: fixed; top: 0; width: 100%; padding: 15px 5%;
             display: flex; justify-content: space-between; align-items: center;
-            background: rgba(0,0,0,0.8); backdrop-filter: blur(15px); z-index: 1000;
+            background: rgba(0,0,0,0.95); backdrop-filter: blur(10px); z-index: 1000;
             border-bottom: 1px solid #111;
         }
-        .logo { font-weight: 900; font-size: 1.5rem; letter-spacing: -1px; }
+        .logo { font-weight: 900; font-size: 1.2rem; text-decoration: none; color: white; }
         .logo span { color: var(--primary); }
 
-        /* --- CARRUSEL HERO --- */
-        .hero-slider {
-            position: relative; width: 100%; height: 80vh; overflow: hidden; margin-top: 60px;
-        }
+        /* --- HERO SLIDER --- */
+        .hero-slider { position: relative; width: 100%; height: 70vh; overflow: hidden; margin-top: 50px; }
         .slides { display: flex; width: 300%; height: 100%; transition: 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
         .slide { 
             width: 100%; height: 100%; background-size: cover; background-position: center;
-            display: flex; align-items: center; justify-content: center; flex-direction: column;
-            text-align: center; position: relative;
+            display: flex; align-items: center; justify-content: center; position: relative;
         }
-        .slide::after { content: ''; position: absolute; inset: 0; background: rgba(0,0,0,0.6); }
-        .slide-content { position: relative; z-index: 2; padding: 0 20px; }
-        .slide h2 { font-size: 4rem; font-weight: 900; text-transform: uppercase; margin-bottom: 10px; }
-        .slide p { color: var(--primary); font-size: 1.2rem; letter-spacing: 4px; }
+        .slide::after { content: ''; position: absolute; inset: 0; background: linear-gradient(0deg, black 10%, transparent 100%); }
+        .slide-content { position: relative; z-index: 2; text-align: center; padding: 0 20px; }
+        .slide h2 { font-size: 2.5rem; font-weight: 900; text-transform: uppercase; line-height: 1; }
+        .slide p { color: var(--primary); font-size: 0.9rem; letter-spacing: 3px; margin-top: 10px; }
 
-        /* --- GRID DE PRODUCTOS (5x4) --- */
-        .container { max-width: 1400px; margin: 0 auto; padding: 80px 20px; }
-        .section-title { text-align: center; font-size: 2.5rem; margin-bottom: 60px; font-weight: 900; }
+        /* --- PRODUCT GRID (ADAPTADO) --- */
+        .container { max-width: 1400px; margin: 0 auto; padding: 40px 15px; }
+        .section-title { text-align: center; font-size: 1.8rem; margin-bottom: 30px; font-weight: 900; text-transform: uppercase; }
         
         .product-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr); /* 4 Columnas */
-            gap: 25px;
+            grid-template-columns: repeat(2, 1fr); /* 2 Columnas móvil */
+            gap: 12px;
+        }
+
+        @media (min-width: 992px) {
+            .product-grid { grid-template-columns: repeat(4, 1fr); gap: 25px; }
+            .slide h2 { font-size: 5rem; }
+            .hero-slider { height: 85vh; }
         }
 
         .product-card {
-            background: var(--card); border: 1px solid #1a1a1a; padding: 20px;
-            border-radius: 10px; transition: all 0.4s ease; text-align: center;
+            background: var(--card); border: 1px solid #1a1a1a; padding: 15px;
+            border-radius: 12px; transition: 0.3s ease; text-align: center;
             display: flex; flex-direction: column; justify-content: space-between;
         }
-        .product-card:hover {
-            transform: translateY(-10px); border-color: var(--primary);
-            box-shadow: 0 10px 30px rgba(0, 242, 255, 0.1);
-        }
-        .img-box { height: 200px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
+        .product-card:hover { transform: translateY(-5px); border-color: var(--primary); }
+        
+        .img-box { height: 150px; display: flex; align-items: center; justify-content: center; margin-bottom: 10px; overflow: hidden; }
         .img-box img { max-width: 100%; max-height: 100%; object-fit: contain; transition: 0.5s; }
         .product-card:hover img { transform: scale(1.1); }
 
-        .product-card h3 { font-size: 1rem; margin-bottom: 10px; color: #eee; }
-        .price { color: var(--primary); font-weight: 700; font-size: 1.4rem; margin-bottom: 20px; display: block; }
+        .product-card h3 { font-size: 0.8rem; margin-bottom: 5px; color: #ccc; min-height: 32px; }
+        .price { color: var(--primary); font-weight: 700; font-size: 1.1rem; margin-bottom: 15px; }
         
         .buy-btn {
-            background: transparent; border: 1px solid #333; color: white;
-            padding: 12px; text-decoration: none; font-weight: 700; font-size: 0.8rem;
-            transition: 0.3s; border-radius: 4px;
+            background: white; color: black; padding: 12px;
+            text-decoration: none; font-weight: 900; font-size: 0.7rem;
+            border-radius: 6px; text-transform: uppercase; letter-spacing: 1px;
         }
-        .product-card:hover .buy-btn { background: var(--primary); color: black; border-color: var(--primary); }
+
+        /* --- BOTÓN WHATSAPP FLOTANTE --- */
+        .whatsapp-btn {
+            position: fixed; bottom: 20px; right: 20px;
+            background: var(--whatsapp); width: 60px; height: 60px;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            z-index: 2000; box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+            text-decoration: none; animation: pulse-green 2s infinite;
+        }
+        .whatsapp-btn svg { fill: white; width: 35px; height: 35px; }
+
+        @keyframes pulse-green {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
 
         /* --- CONTACTO --- */
-        .contact { background: #050505; padding: 100px 5%; border-top: 1px solid #111; }
-        .contact-box { max-width: 600px; margin: 0 auto; text-align: center; }
+        .contact { background: #050505; padding: 80px 5%; border-top: 1px solid #111; text-align: center; }
+        .contact h2 { font-size: 2rem; margin-bottom: 10px; }
+        .contact p { color: #666; margin-bottom: 30px; font-size: 0.9rem; }
+        .contact form { max-width: 500px; margin: 0 auto; }
         .contact input, .contact textarea {
-            width: 100%; padding: 15px; margin-bottom: 15px; background: #111; border: 1px solid #222; color: white; outline: none;
+            width: 100%; padding: 15px; margin-bottom: 10px; background: #000; border: 1px solid #222; color: white; border-radius: 5px;
         }
         .contact button {
-            width: 100%; padding: 15px; background: var(--primary); border: none; font-weight: 900; cursor: pointer;
+            width: 100%; padding: 15px; background: var(--primary); border: none; font-weight: 900; text-transform: uppercase; border-radius: 5px;
         }
     </style>
 </head>
 <body>
 
     <div id="loader">
-        <h1 class="logo">TECH<span>GLOBAL</span></h1>
-        <div class="loader-bar"><div class="loader-fill"></div></div>
+        <div class="loader-logo">TECH<span>GLOBAL</span></div>
+        <div class="loader-line"><div class="loader-fill"></div></div>
     </div>
 
+    <a href="https://wa.me/TUNUMERO" class="whatsapp-btn" target="_blank">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    </a>
+
     <header>
-        <div class="logo">TECH<span>GLOBAL</span></div>
-        <nav>
-            <a href="#" style="color:white; text-decoration:none; margin-left:20px;">Catálogo</a>
-            <a href="#contacto" style="color:white; text-decoration:none; margin-left:20px;">Contacto</a>
-        </nav>
+        <a href="#" class="logo">TECH<span>GLOBAL</span></a>
+        <a href="#contacto" style="color:var(--primary); font-size: 0.7rem; font-weight: 700; text-decoration: none; text-transform: uppercase;">Adquirir Ahora</a>
     </header>
 
     <section class="hero-slider">
         <div class="slides" id="slider">
-            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=1600&q=80')">
-                <div class="slide-content"><h2>Smartphones Elite</h2><p>EL FUTURO EN TU MANO</p></div>
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1616348436168-de43ad0db179?w=800')">
+                <div class="slide-content"><h2>MOBILE Z</h2><p>LUJO EN CADA PIXEL</p></div>
             </div>
-            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1593642632823-8f785ba67e45?auto=format&fit=crop&w=1600&q=80')">
-                <div class="slide-content"><h2>Workstations Pro</h2><p>PODER SIN LÍMITES</p></div>
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1593642702821-c8da6771f0c6?w=800')">
+                <div class="slide-content"><h2>STATIONS PRO</h2><p>RENDIMIENTO SIN LÍMITES</p></div>
             </div>
-            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1600&q=80')">
-                <div class="slide-content"><h2>Gaming Gear</h2><p>DOMINA EL JUEGO</p></div>
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1547082299-de196ea013d6?w=800')">
+                <div class="slide-content"><h2>ULTRA TECH</h2><p>EL FUTURO ES HOY</p></div>
             </div>
         </div>
     </section>
 
     <div class="container">
-        <h2 class="section-title">EQUIPOS DE <span>ALTO NIVEL</span></h2>
-        <div class="product-grid" id="productGrid">
-            </div>
+        <h2 class="section-title">Catálogo <span>Exclusivo</span></h2>
+        <div class="product-grid" id="productGrid"></div>
     </div>
 
     <section class="contact" id="contacto">
-        <div class="contact-box">
-            <h2 style="font-size: 2.5rem; margin-bottom: 20px;">CIERRA LA VENTA</h2>
-            <p style="color:#888; margin-bottom: 40px;">Un asesor internacional gestionará tu pedido de forma personalizada.</p>
-            <form>
-                <input type="text" placeholder="Nombre completo">
-                <input type="email" placeholder="Email corporativo">
-                <textarea placeholder="¿Qué equipo deseas adquirir?"></textarea>
-                <button type="button">CONTACTAR PARA COMPRAR</button>
-            </form>
-        </div>
+        <h2>CIERRA TU VENTA</h2>
+        <p>Un especialista global te atenderá.</p>
+        <form>
+            <input type="text" placeholder="Nombre">
+            <input type="email" placeholder="Email">
+            <textarea placeholder="¿En qué producto estás interesado?"></textarea>
+            <button type="button">SOLICITAR CONTACTO PROFESIONAL</button>
+        </form>
     </section>
 
     <script>
-        // Datos de productos (Imágenes reales de tecnología)
         const products = [
-            { name: "iPhone 15 Pro Max", price: "1299", img: "https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=400&q=80" },
-            { name: "MacBook Pro M3", price: "2499", img: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=400&q=80" },
-            { name: "RTX 4090 Rog Strix", price: "1999", img: "https://images.unsplash.com/photo-1591488320449-011701bb6704?auto=format&fit=crop&w=400&q=80" },
-            { name: "Sony WH-1000XM5", price: "399", img: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=400&q=80" },
-            { name: "Samsung S24 Ultra", price: "1199", img: "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?auto=format&fit=crop&w=400&q=80" },
-            { name: "iPad Pro 12.9", price: "1099", img: "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?auto=format&fit=crop&w=400&q=80" },
-            { name: "DJI Mavic 3", price: "2100", img: "https://images.unsplash.com/photo-1507582020474-9a35b7d455d9?auto=format&fit=crop&w=400&q=80" },
-            { name: "Apple Watch Ultra", price: "799", img: "https://images.unsplash.com/photo-1434494878577-86c23bcb06b9?auto=format&fit=crop&w=400&q=80" },
-            { name: "Monitor Odyssey G9", price: "1599", img: "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?auto=format&fit=crop&w=400&q=80" },
-            { name: "Keychron Q1", price: "180", img: "https://images.unsplash.com/photo-1511467687858-23d96c32e4ae?auto=format&fit=crop&w=400&q=80" },
-            { name: "PlayStation 5 Pro", price: "699", img: "https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?auto=format&fit=crop&w=400&q=80" },
-            { name: "Canon EOS R5", price: "3899", img: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=400&q=80" },
-            { name: "GoPro Hero 12", price: "399", img: "https://images.unsplash.com/photo-1565849906461-0ee440530724?auto=format&fit=crop&w=400&q=80" },
-            { name: "Tesla Powerwall", price: "7000", img: "https://images.unsplash.com/photo-1592833159155-c62df1b3562a?auto=format&fit=crop&w=400&q=80" },
-            { name: "Razer Blade 16", price: "2999", img: "https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?auto=format&fit=crop&w=400&q=80" },
-            { name: "AirPods Max", price: "549", img: "https://images.unsplash.com/photo-1613040809024-b4ef7ba99bc3?auto=format&fit=crop&w=400&q=80" },
-            { name: "Steam Deck OLED", price: "549", img: "https://images.unsplash.com/photo-1635338169123-1002283e30f1?auto=format&fit=crop&w=400&q=80" },
-            { name: "Logitech MX Master", price: "99", img: "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?auto=format&fit=crop&w=400&q=80" },
-            { name: "Bose Soundbar", price: "899", img: "https://images.unsplash.com/photo-1545454675-3531b543be5d?auto=format&fit=crop&w=400&q=80" },
-            { name: "ASUS Zenbook Duo", price: "1899", img: "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?auto=format&fit=crop&w=400&q=80" }
+            { name: "iPhone 15 Pro Max", price: "1,299", img: "https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=400" },
+            { name: "MacBook Pro M3", price: "2,499", img: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=400" },
+            { name: "RTX 4090 Rog Strix", price: "1,999", img: "https://images.unsplash.com/photo-1591488320449-011701bb6704?w=400" },
+            { name: "Sony WH-1000XM5", price: "399", img: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400" },
+            { name: "Samsung S24 Ultra", price: "1,199", img: "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=400" },
+            { name: "iPad Pro 12.9", price: "1,099", img: "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=400" },
+            { name: "DJI Mavic 3", price: "2,100", img: "https://images.unsplash.com/photo-1507582020474-9a35b7d455d9?w=400" },
+            { name: "Apple Watch Ultra", price: "799", img: "https://images.unsplash.com/photo-1434494878577-86c23bcb06b9?w=400" },
+            { name: "Monitor Odyssey G9", price: "1,599", img: "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=400" },
+            { name: "Keychron Q1", price: "180", img: "https://images.unsplash.com/photo-1511467687858-23d96c32e4ae?w=400" },
+            { name: "PlayStation 5 Pro", price: "699", img: "https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?w=400" },
+            { name: "Canon EOS R5", price: "3,899", img: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=400" },
+            { name: "GoPro Hero 12", price: "399", img: "https://images.unsplash.com/photo-1565849906461-0ee440530724?w=400" },
+            { name: "Tesla Powerwall", price: "7,000", img: "https://images.unsplash.com/photo-1592833159155-c62df1b3562a?w=400" },
+            { name: "Razer Blade 16", price: "2,999", img: "https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?w=400" },
+            { name: "AirPods Max", price: "549", img: "https://images.unsplash.com/photo-1613040809024-b4ef7ba99bc3?w=400" },
+            { name: "Steam Deck OLED", price: "549", img: "https://images.unsplash.com/photo-1635338169123-1002283e30f1?w=400" },
+            { name: "Logitech MX Master", price: "99", img: "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=400" },
+            { name: "Bose Soundbar", price: "899", img: "https://images.unsplash.com/photo-1545454675-3531b543be5d?w=400" },
+            { name: "ASUS Zenbook Duo", price: "1,899", img: "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=400" }
         ];
 
         const grid = document.getElementById('productGrid');
@@ -186,30 +192,24 @@
                     <div class="img-box"><img src="${p.img}" alt="${p.name}"></div>
                     <h3>${p.name}</h3>
                     <span class="price">$${p.price}</span>
-                    <a href="#contacto" class="buy-btn">COMPRAR</a>
+                    <a href="#contacto" class="buy-btn">Comprar</a>
                 </div>
             `;
         });
 
-        // Lógica Carrusel
         let idx = 0;
         setInterval(() => {
             idx = (idx + 1) % 3;
             document.getElementById('slider').style.transform = `translateX(-${idx * 33.33}%)`;
         }, 5000);
 
-        // Quitar Loader
         window.onload = () => {
             setTimeout(() => {
-                document.getElementById('loader').style.opacity = '0';
-                setTimeout(() => document.getElementById('loader').style.display = 'none', 1000);
+                const l = document.getElementById('loader');
+                l.style.opacity = '0';
+                setTimeout(() => l.style.display = 'none', 800);
             }, 2000);
         };
     </script>
 </body>
-</html>
-    <script  src="./script.js"></script>
-
-  </body>
-  
 </html>
