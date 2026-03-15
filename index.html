@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Untitled</title>
+    <link rel="stylesheet" href="./style.css">
+
+  </head>
+    
+  <body>
+  <!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TECH GLOBAL | Elite Store</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #00f2ff;
+            --bg: #000000;
+            --card: #0a0a0a;
+            --accent: linear-gradient(135deg, #00f2ff 0%, #0062ff 100%);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        body { background: var(--bg); color: white; overflow-x: hidden; }
+
+        /* --- PRELOADER --- */
+        #loader {
+            position: fixed; inset: 0; z-index: 9999; background: #000;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            transition: opacity 1s ease, visibility 1s;
+        }
+        .loader-bar { width: 200px; height: 2px; background: #111; position: relative; margin-top: 20px; }
+        .loader-fill { position: absolute; width: 0%; height: 100%; background: var(--primary); animation: load 2s forwards; }
+        @keyframes load { to { width: 100%; } }
+
+        /* --- HEADER --- */
+        header {
+            position: fixed; top: 0; width: 100%; padding: 20px 5%;
+            display: flex; justify-content: space-between; align-items: center;
+            background: rgba(0,0,0,0.8); backdrop-filter: blur(15px); z-index: 1000;
+            border-bottom: 1px solid #111;
+        }
+        .logo { font-weight: 900; font-size: 1.5rem; letter-spacing: -1px; }
+        .logo span { color: var(--primary); }
+
+        /* --- CARRUSEL HERO --- */
+        .hero-slider {
+            position: relative; width: 100%; height: 80vh; overflow: hidden; margin-top: 60px;
+        }
+        .slides { display: flex; width: 300%; height: 100%; transition: 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
+        .slide { 
+            width: 100%; height: 100%; background-size: cover; background-position: center;
+            display: flex; align-items: center; justify-content: center; flex-direction: column;
+            text-align: center; position: relative;
+        }
+        .slide::after { content: ''; position: absolute; inset: 0; background: rgba(0,0,0,0.6); }
+        .slide-content { position: relative; z-index: 2; padding: 0 20px; }
+        .slide h2 { font-size: 4rem; font-weight: 900; text-transform: uppercase; margin-bottom: 10px; }
+        .slide p { color: var(--primary); font-size: 1.2rem; letter-spacing: 4px; }
+
+        /* --- GRID DE PRODUCTOS (5x4) --- */
+        .container { max-width: 1400px; margin: 0 auto; padding: 80px 20px; }
+        .section-title { text-align: center; font-size: 2.5rem; margin-bottom: 60px; font-weight: 900; }
+        
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); /* 4 Columnas */
+            gap: 25px;
+        }
+
+        .product-card {
+            background: var(--card); border: 1px solid #1a1a1a; padding: 20px;
+            border-radius: 10px; transition: all 0.4s ease; text-align: center;
+            display: flex; flex-direction: column; justify-content: space-between;
+        }
+        .product-card:hover {
+            transform: translateY(-10px); border-color: var(--primary);
+            box-shadow: 0 10px 30px rgba(0, 242, 255, 0.1);
+        }
+        .img-box { height: 200px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
+        .img-box img { max-width: 100%; max-height: 100%; object-fit: contain; transition: 0.5s; }
+        .product-card:hover img { transform: scale(1.1); }
+
+        .product-card h3 { font-size: 1rem; margin-bottom: 10px; color: #eee; }
+        .price { color: var(--primary); font-weight: 700; font-size: 1.4rem; margin-bottom: 20px; display: block; }
+        
+        .buy-btn {
+            background: transparent; border: 1px solid #333; color: white;
+            padding: 12px; text-decoration: none; font-weight: 700; font-size: 0.8rem;
+            transition: 0.3s; border-radius: 4px;
+        }
+        .product-card:hover .buy-btn { background: var(--primary); color: black; border-color: var(--primary); }
+
+        /* --- CONTACTO --- */
+        .contact { background: #050505; padding: 100px 5%; border-top: 1px solid #111; }
+        .contact-box { max-width: 600px; margin: 0 auto; text-align: center; }
+        .contact input, .contact textarea {
+            width: 100%; padding: 15px; margin-bottom: 15px; background: #111; border: 1px solid #222; color: white; outline: none;
+        }
+        .contact button {
+            width: 100%; padding: 15px; background: var(--primary); border: none; font-weight: 900; cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="loader">
+        <h1 class="logo">TECH<span>GLOBAL</span></h1>
+        <div class="loader-bar"><div class="loader-fill"></div></div>
+    </div>
+
+    <header>
+        <div class="logo">TECH<span>GLOBAL</span></div>
+        <nav>
+            <a href="#" style="color:white; text-decoration:none; margin-left:20px;">Catálogo</a>
+            <a href="#contacto" style="color:white; text-decoration:none; margin-left:20px;">Contacto</a>
+        </nav>
+    </header>
+
+    <section class="hero-slider">
+        <div class="slides" id="slider">
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=1600&q=80')">
+                <div class="slide-content"><h2>Smartphones Elite</h2><p>EL FUTURO EN TU MANO</p></div>
+            </div>
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1593642632823-8f785ba67e45?auto=format&fit=crop&w=1600&q=80')">
+                <div class="slide-content"><h2>Workstations Pro</h2><p>PODER SIN LÍMITES</p></div>
+            </div>
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1600&q=80')">
+                <div class="slide-content"><h2>Gaming Gear</h2><p>DOMINA EL JUEGO</p></div>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <h2 class="section-title">EQUIPOS DE <span>ALTO NIVEL</span></h2>
+        <div class="product-grid" id="productGrid">
+            </div>
+    </div>
+
+    <section class="contact" id="contacto">
+        <div class="contact-box">
+            <h2 style="font-size: 2.5rem; margin-bottom: 20px;">CIERRA LA VENTA</h2>
+            <p style="color:#888; margin-bottom: 40px;">Un asesor internacional gestionará tu pedido de forma personalizada.</p>
+            <form>
+                <input type="text" placeholder="Nombre completo">
+                <input type="email" placeholder="Email corporativo">
+                <textarea placeholder="¿Qué equipo deseas adquirir?"></textarea>
+                <button type="button">CONTACTAR PARA COMPRAR</button>
+            </form>
+        </div>
+    </section>
+
+    <script>
+        // Datos de productos (Imágenes reales de tecnología)
+        const products = [
+            { name: "iPhone 15 Pro Max", price: "1299", img: "https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=400&q=80" },
+            { name: "MacBook Pro M3", price: "2499", img: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=400&q=80" },
+            { name: "RTX 4090 Rog Strix", price: "1999", img: "https://images.unsplash.com/photo-1591488320449-011701bb6704?auto=format&fit=crop&w=400&q=80" },
+            { name: "Sony WH-1000XM5", price: "399", img: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=400&q=80" },
+            { name: "Samsung S24 Ultra", price: "1199", img: "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?auto=format&fit=crop&w=400&q=80" },
+            { name: "iPad Pro 12.9", price: "1099", img: "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?auto=format&fit=crop&w=400&q=80" },
+            { name: "DJI Mavic 3", price: "2100", img: "https://images.unsplash.com/photo-1507582020474-9a35b7d455d9?auto=format&fit=crop&w=400&q=80" },
+            { name: "Apple Watch Ultra", price: "799", img: "https://images.unsplash.com/photo-1434494878577-86c23bcb06b9?auto=format&fit=crop&w=400&q=80" },
+            { name: "Monitor Odyssey G9", price: "1599", img: "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?auto=format&fit=crop&w=400&q=80" },
+            { name: "Keychron Q1", price: "180", img: "https://images.unsplash.com/photo-1511467687858-23d96c32e4ae?auto=format&fit=crop&w=400&q=80" },
+            { name: "PlayStation 5 Pro", price: "699", img: "https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?auto=format&fit=crop&w=400&q=80" },
+            { name: "Canon EOS R5", price: "3899", img: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=400&q=80" },
+            { name: "GoPro Hero 12", price: "399", img: "https://images.unsplash.com/photo-1565849906461-0ee440530724?auto=format&fit=crop&w=400&q=80" },
+            { name: "Tesla Powerwall", price: "7000", img: "https://images.unsplash.com/photo-1592833159155-c62df1b3562a?auto=format&fit=crop&w=400&q=80" },
+            { name: "Razer Blade 16", price: "2999", img: "https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?auto=format&fit=crop&w=400&q=80" },
+            { name: "AirPods Max", price: "549", img: "https://images.unsplash.com/photo-1613040809024-b4ef7ba99bc3?auto=format&fit=crop&w=400&q=80" },
+            { name: "Steam Deck OLED", price: "549", img: "https://images.unsplash.com/photo-1635338169123-1002283e30f1?auto=format&fit=crop&w=400&q=80" },
+            { name: "Logitech MX Master", price: "99", img: "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?auto=format&fit=crop&w=400&q=80" },
+            { name: "Bose Soundbar", price: "899", img: "https://images.unsplash.com/photo-1545454675-3531b543be5d?auto=format&fit=crop&w=400&q=80" },
+            { name: "ASUS Zenbook Duo", price: "1899", img: "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?auto=format&fit=crop&w=400&q=80" }
+        ];
+
+        const grid = document.getElementById('productGrid');
+        products.forEach(p => {
+            grid.innerHTML += `
+                <div class="product-card">
+                    <div class="img-box"><img src="${p.img}" alt="${p.name}"></div>
+                    <h3>${p.name}</h3>
+                    <span class="price">$${p.price}</span>
+                    <a href="#contacto" class="buy-btn">COMPRAR</a>
+                </div>
+            `;
+        });
+
+        // Lógica Carrusel
+        let idx = 0;
+        setInterval(() => {
+            idx = (idx + 1) % 3;
+            document.getElementById('slider').style.transform = `translateX(-${idx * 33.33}%)`;
+        }, 5000);
+
+        // Quitar Loader
+        window.onload = () => {
+            setTimeout(() => {
+                document.getElementById('loader').style.opacity = '0';
+                setTimeout(() => document.getElementById('loader').style.display = 'none', 1000);
+            }, 2000);
+        };
+    </script>
+</body>
+</html>
+    <script  src="./script.js"></script>
+
+  </body>
+  
+</html>

@@ -1,0 +1,131 @@
+:root {
+    --accent: #00ffcc; /* Color tecnológico */
+    --bg-dark: #050505;
+    --card-bg: #121212;
+    --text: #ffffff;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header Profesional */
+header {
+    height: 80px;
+    background: rgba(0,0,0,0.9);
+    backdrop-filter: blur(10px);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid #222;
+}
+
+.nav-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+}
+
+/* Grilla de Productos Imponente (4 Columnas) */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 Columnas estrictas */
+    gap: 25px;
+    padding-bottom: 80px;
+}
+
+.product-card {
+    background: var(--card-bg);
+    border: 1px solid #222;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+/* Animación de Hover */
+.product-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--accent);
+    box-shadow: 0 10px 30px rgba(0, 255, 204, 0.1);
+}
+
+.img-container {
+    width: 100%;
+    aspect-ratio: 1/1;
+    background: #1a1a1a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.img-container img { width: 80%; transition: transform 0.5s ease; }
+.product-card:hover img { transform: scale(1.1); }
+
+.product-info { padding: 20px; text-align: center; }
+
+.buy-btn {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 20px;
+    background: var(--accent);
+    color: #000;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    transition: 0.3s;
+}
+
+/* Sección Contacto Estructurada */
+.contact-section {
+    background: #0a0a0a;
+    padding: 100px 0;
+    border-top: 1px solid #222;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: center;
+}
+
+/* Pantalla de Carga Estilo Global */
+#loader {
+    position: fixed;
+    inset: 0;
+    background: #000;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.progress-bar {
+    width: 200px;
+    height: 2px;
+    background: #222;
+    margin-top: 20px;
+}
+
+.progress-fill {
+    width: 0%;
+    height: 100%;
+    background: var(--accent);
+    animation: load 2s forwards;
+}
+
+@keyframes load { to { width: 100%; } }
